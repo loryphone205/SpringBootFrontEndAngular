@@ -1,0 +1,13 @@
+header {
+  background-color: #121212;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1,
+p {
+  margin: 0px;
+  font-weight: lighter;
+}

@@ -1,0 +1,35 @@
+th {
+  text-align: center;
+}
+
+div {
+  text-align: center;
+}
+
+.add {
+  margin: 2rem;
+}
+
+td {
+  padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-flow: wrap row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+mat-form-field {
+  margin: 0.5rem;
+}
+
+.formContainer {
+  height: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-flow: wrap column;
+}

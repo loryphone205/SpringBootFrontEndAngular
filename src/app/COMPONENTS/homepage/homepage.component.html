@@ -1,0 +1,99 @@
+<div *ngIf="action === 'Visualizza'">
+  <button mat-raised-button class="add" (click)="changeViewAdd()">
+    Aggiungi
+  </button>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <!-- Desc Column -->
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">{{ element.desc }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <!-- Content Column -->
+    <ng-container matColumnDef="contentType">
+      <th mat-header-cell *matHeaderCellDef>Content Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.contentType }}</td>
+    </ng-container>
+
+    <!-- Date Created Column -->
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef>Date Created</th>
+      <td mat-cell *matCellDef="let element">{{ element.dateCreated }}</td>
+    </ng-container>
+
+    <!-- Date Updated Column -->
+    <ng-container matColumnDef="dateUpdated">
+      <th mat-header-cell *matHeaderCellDef>Date Updated</th>
+      <td mat-cell *matCellDef="let element">{{ element.dateUpdated }}</td>
+    </ng-container>
+
+    <!-- url Column -->
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>Url</th>
+      <td mat-cell *matCellDef="let element">{{ element.url }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<div class="formContainer">
+  <form
+    [formGroup]="actionForm"
+    *ngIf="action === 'Aggiungi' || action === 'Modifica'"
+  >
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="desc" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <input matInput formControlName="status" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Content Type</mat-label>
+      <input matInput formControlName="contentType" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date Created</mat-label>
+      <input matInput formControlName="dateCreated" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date Updated</mat-label>
+      <input matInput formControlName="dateUpdated" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" />
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-raised-button type="button" (click)="sendForm()">
+        Invia
+      </button>
+      <button mat-raised-button type="reset">Reset</button>
+    </div>
+  </form>
+</div>

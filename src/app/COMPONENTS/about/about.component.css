@@ -1,0 +1,10 @@
+h1 {
+  font-weight: lighter;
+}
+
+article {
+  display: block;
+  text-align: center;
+  margin: 10px;
+  height: 100%;
+}
