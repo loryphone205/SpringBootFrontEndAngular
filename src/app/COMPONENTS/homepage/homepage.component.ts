@@ -31,6 +31,9 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './homepage.component.css',
 })
 export class HomepageComponent {
+  //pos temporanea per la modifica
+  pos: number;
+
   //variabile che mi aiuta a capire quando mostrare il form o meno
   action: string = 'Visualizza';
 
@@ -82,8 +85,9 @@ export class HomepageComponent {
     this.action = 'Aggiungi';
   }
 
-  changeViewMod(): void {
+  changeViewMod(pos: any): void {
     this.action = 'Modifica';
+    this.pos = pos;
   }
 
   changeViewVisual(): void {
@@ -92,15 +96,32 @@ export class HomepageComponent {
 
   //add
   sendForm() {
-    this.dbService.postData(this.actionForm.value).subscribe({
-      next: (result) => {
-        console.log('Post Avvenuta con successo');
-        this.update();
-      },
-      error: (error) => {
-        console.log('Post non avvenuta con successo.');
-      },
-    });
+    if (this.action === 'Aggiungi') {
+      this.dbService.postData(this.actionForm.value).subscribe({
+        next: (result) => {
+          console.log('Post Avvenuta con successo');
+          this.update();
+        },
+        error: (error) => {
+          console.log('Post non avvenuta con successo.');
+        },
+      });
+    }
+
+    if (this.action === 'Modifica') {
+      this.actionForm.value.id = this.dataSource.at(this.pos).id;
+      this.dbService
+        .putData(this.dataSource.at(this.pos).id, this.actionForm.value)
+        .subscribe({
+          next: (result) => {
+            console.log('Put Avvenuta');
+            this.update();
+          },
+          error: (error) => {
+            console.log('Put non avvenuta');
+          },
+        });
+    }
     this.action = 'Visualizza';
   }
 
