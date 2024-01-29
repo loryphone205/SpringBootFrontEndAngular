@@ -17,4 +17,8 @@ export class DbService {
   postData(data: any) {
     return this.http.post(this.backEndUrl, data);
   }
+
+  deleteData(pos: any) {
+    return this.http.delete(this.backEndUrl + '/' + pos);
+  }
 }

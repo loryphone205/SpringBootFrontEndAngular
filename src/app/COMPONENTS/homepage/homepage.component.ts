@@ -49,6 +49,7 @@ export class HomepageComponent {
     'dateCreated',
     'dateUpdated',
     'url',
+    'actions',
   ];
 
   constructor(private dbService: DbService, private formBuilder: FormBuilder) {
@@ -85,6 +86,10 @@ export class HomepageComponent {
     this.action = 'Modifica';
   }
 
+  changeViewVisual(): void {
+    this.action = 'Visualizza';
+  }
+
   //add
   sendForm() {
     this.dbService.postData(this.actionForm.value).subscribe({
@@ -94,6 +99,20 @@ export class HomepageComponent {
       },
       error: (error) => {
         console.log('Post non avvenuta con successo.');
+      },
+    });
+    this.action = 'Visualizza';
+  }
+
+  //delete method
+  deleteByPos(pos: number) {
+    this.dbService.deleteData(this.dataSource.at(pos).id).subscribe({
+      next: (result) => {
+        console.log('Delete Avvenuta');
+        this.update();
+      },
+      error: (error) => {
+        console.log('Delete non funzionante');
       },
     });
     this.action = 'Visualizza';
